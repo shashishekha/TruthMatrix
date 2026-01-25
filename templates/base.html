@@ -32,12 +32,28 @@
         </li>
         
       </ul>
+      <div class="ml-auto form-inline">
       <form method="get" action="/search" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <a href="/admin" role="button" target="_blank" class="btn btn-outline-success my-2 my-sm-0">Admin Panel</a>
+      {% comment %} <a href="/admin" role="button" target="_blank" class="btn btn-outline-success my-2 my-sm-0">Admin Panel</a> {% endcomment %}
+      {% if user.is_authenticated %}
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Welcome{{request.user}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          </ul>
+        </div>
+        </li>
+      </ul>
       
+       
+      {% else %}
+     
       <!-- Button trigger Signin modal -->
       <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal" data-bs-target="#loginModal">
         Login
@@ -47,8 +63,9 @@
       <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal" data-bs-target="#signupModal">
         SignUp
       </button>
+      </div>
       
-    </div>
+      {% endif %}
   </div>
 </nav>
 
@@ -74,33 +91,34 @@
       <div class="modal-body">
   
   
-  <form>
+  <form action='/login' method='post'>
+     {% csrf_token %}
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" placeholder="choose a unique username">
+    <input type="text" class="form-control" id="username" placeholder="choose a unique username" required>
   </div>
   <div class="mb-3">
     <label for="fname" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="fname" placeholder="First Name">
+    <input type="text" class="form-control" id="fname" placeholder="First Name" required>
   </div>
   <div class="mb-3">
     <label for="lname" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="lname" placeholder="Last Name">
+    <input type="text" class="form-control" id="lname" placeholder="Last Name" required>
   </div>
 
    <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
    <div class="mb-3">
     <label for="pass1" class="form-label">Choose Your Password</label>
-    <input type="password" class="form-control" id="pass1" aria-describedby="Choose your password">
+    <input type="password" class="form-control" id="pass1" aria-describedby="Choose your password" required>
   </div>
   </div>
    <div class="mb-3">
     <label for="pass2" class="form-label">Enter Your Password Again!</label>
-    <input type="password" class="form-control" id="pass2" aria-describedby="Enter your password again!">
+    <input type="password" class="form-control" id="pass2" aria-describedby="Enter your password again!" required>
   </div>
 
   <div class="mb-3">
@@ -136,15 +154,16 @@
   
   <form>
   <div class="mb-3">
+   
     <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="loginusername" placeholder="choose a unique username">
+    <input type="text" class="form-control" id="loginusername" placeholder="choose a unique username" required>
   </div>
   
    <div class="mb-3">
     <label for="pass" class="form-label">Enter Your Password</label>
-    <input type="password" class="form-control" id="pass" aria-describedby="Enter your password">
+    <input type="password" class="form-control" id="loginpass" aria-describedby="Enter your password" required>
   </div>
-
+  {% csrf_token %}
   <button type="submit" class="btn btn-primary">Submit</button>
   </form>
       </div>
