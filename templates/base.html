@@ -90,7 +90,7 @@
       <div class="modal-body">
   
   
-  <form action='/login' method='post'>
+  <form action='/signup' method='post'>
      {% csrf_token %}
   <div class="mb-3">
     <label for="username" name="username" class="form-label">Username</label>
@@ -98,26 +98,26 @@
   </div>
   <div class="mb-3">
     <label for="fname" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="fname" placeholder="First Name" required>
+    <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name" required>
   </div>
   <div class="mb-3">
     <label for="lname" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="lname" placeholder="Last Name" required>
+    <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name" required>
   </div>
 
    <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
    <div class="mb-3">
     <label for="pass1" class="form-label">Choose Your Password</label>
-    <input type="password" class="form-control" id="pass1" aria-describedby="Choose your password" required>
+    <input type="password" name ="pass1" class="form-control" id="pass1" aria-describedby="Choose your password" required>
   </div>
   </div>
    <div class="mb-3">
     <label for="pass2" class="form-label">Enter Your Password Again!</label>
-    <input type="password" class="form-control" id="pass2" aria-describedby="Enter your password again!" required>
+    <input type="password" name="pass2" class="form-control" id="pass2" aria-describedby="Enter your password again!" required>
   </div>
 
   <div class="mb-3">
@@ -149,21 +149,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-   <form action='/signup' method='post'>
+    <form action='/login' method='post'>
      {% csrf_token %}
-  
-  <form>
   <div class="mb-3">
    
     <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="loginusername" placeholder="choose a unique username" required>
+    <input type="text" class="form-control" name="loginusername" id="loginusername" placeholder="choose a unique username" required>
   </div>
   
    <div class="mb-3">
     <label for="pass" class="form-label">Enter Your Password</label>
-    <input type="password" class="form-control" id="loginpass" aria-describedby="Enter your password" required>
+    <input type="password" class="form-control" name="loginpassword" id="loginpass" aria-describedby="Enter your password" required>
   </div>
-  {% csrf_token %}
   <button type="submit" class="btn btn-primary">Submit</button>
   </form>
       </div>
