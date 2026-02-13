@@ -40,7 +40,7 @@ def search(request):
     # allPosts = Post.objects.all()
     else :
         allPostsTitle= Post.objects.filter(title__icontains=query)
-        allPostsContent = Post.objects.filter(content_icontains=query)
+        allPostsContent = Post.objects.filter(content__icontains=query)
         allPosts = allPostsTitle.union(allPostsContent)
     
     

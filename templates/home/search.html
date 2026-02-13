@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container my-3">  
     <h2>Search Results</h2>
-    {% if allPosts | length < 1 %}
+    {% if allPosts or length < 1 %}
     <p>No search results! </p>
 
     Your search query: <b>{{query}}</b> - did not match any documents.
